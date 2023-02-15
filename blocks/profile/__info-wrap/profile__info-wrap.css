@@ -1,0 +1,23 @@
+.profile__info-wrap {
+  margin: 0;
+  padding: 0;
+  gap: 18px;
+  display: flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  position: relative;
+
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info-wrapper {
+    margin: 0;
+    padding: 0 0 0 28px;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Интерактивный сервис Mesto, Елена Кайнарова на Яндекс Практикуме">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="autor" content="Elena Kainarova">
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/mesto-logo.svg" alt="Логотип интерактивного сервиса Mesto">
+  </header>
+
+  <main>
+    <section class="profile">
+      <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Жак-Ив-Кусто на фоне море">
+      <div class="profile__info">
+        <div class="profile__info-wrap">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button"></button>
+        </div>
+        <h2 class="profile__subtitle">Исследователь океана</h2>
+      </div>
+      <button type="button" class="profile__add-button"></button>
+    </section>
+
+    <section class="cards">
+      <ul class="cards__list">
+        <li class="card">
+          <img class="card__img" src="./images/vadim-artyukhin-s6DCYQ5vgpA_Baikal.jpg"
+            alt="Фотография природы России - Байкал">
+          <h2 class="card__title">Байкал</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+        <li class="card">
+          <img class="card__img" src="./images/daniil-silantev-52vUnu3b4cI-Kamchatka.jpg"
+            alt="Фотография природы России - Камчатка">
+          <h2 class="card__title">Камчатка</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+        <li class="card">
+          <img class="card__img" src="./images/nikolay-tengerekov-6geaWUBIzXU_Altai.jpg"
+            alt="Фотография природы России - Алтай">
+          <h2 class="card__title">Алтай</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+        <li class="card">
+          <img class="card__img" src="./images/shtabnykh_photo-IUwkO6LZLJQ_Chuiskyi_Trakt.jpg"
+            alt="Фотография природы России - Чуйский Тракт">
+          <h2 class="card__title">Чуйский траккккккккт</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+        <li class="card">
+          <img class="card__img" src="./images/oleg-gratilo-M4yZ235vwkE_Crime.jpg"
+            alt="Фотография природы России - Крым. Белая гора">
+          <h2 class="card__title">Крым</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+        <li class="card">
+          <img class="card__img" src="./images/kirill-pershin-1404681-unsplash.png"
+            alt="Фотография природы России - Эльбрус">
+          <h2 class="card__title">Эльбрус</h2>
+          <button type="button" class="card__like"></button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyrigth">&copy; 2023 Elena Kainarova</p>
+  </footer>
+
+  <section data-type="edit-popup" class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="profile-form">
+        <label class="popup__input-wrap">
+          <input type="text" id="input-name" name="input-name" class="popup__input popup__input_type_name"
+            value="Жак-Ив Кусто" placeholder="Ваше имя" minlength="2" maxlength="50" required>
+        </label>
+
+        <label class="popup__input-wrap">
+          <input type="text" id="input-about" name="input-about" class="popup__input popup__input_type_about"
+            value="Исследователь океана" placeholder="Описание" minlength="2" maxlength="300" required>
+        </label>
+
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+    </div>
+  </section>
+
+
+
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>
