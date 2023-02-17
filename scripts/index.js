@@ -30,7 +30,7 @@ function handleFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 
-  openPopup();
+  closePopup();
 }
 
 
