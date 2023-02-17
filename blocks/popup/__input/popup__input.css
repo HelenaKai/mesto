@@ -1,5 +1,5 @@
 .popup__input {
-  padding: 0 0 13px 0;
+  padding: 0 0 9px 0;
   width: 100%;
   font-weight: 400;
   font-size: 14px;
@@ -7,6 +7,10 @@
   color: #000000;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 380px;
 }
 
 .popup__input:focus {
