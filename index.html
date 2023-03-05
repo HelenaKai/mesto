@@ -10,6 +10,7 @@
   <meta name="autor" content="Elena Kainarova">
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="./scripts/cards.js"></script>
 </head>
 
 <body class="page">
@@ -30,81 +31,45 @@
       <button type="button" class="profile__add-button"></button>
     </section>
 
-    <section class="cards">
+
+    <section class="cards" aria-label="Галерея фотографий">
       <ul class="cards__list">
-        <li class="card">
-          <img class="card__img" src="./images/vadim-artyukhin-s6DCYQ5vgpA_Baikal.jpg"
-            alt="Фотография природы России - Байкал">
-          <div class="card__description">
-            <h2 class="card__title">Байкал</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-        </li>
-
-
-        <li class="card">
-          <img class="card__img" src="./images/daniil-silantev-52vUnu3b4cI-Kamchatka.jpg"
-            alt="Фотография природы России - Камчатка">
-          <div class="card__description">
-            <h2 class="card__title">Камчатка</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-
-        </li>
-        <li class="card">
-          <img class="card__img" src="./images/nikolay-tengerekov-6geaWUBIzXU_Altai.jpg"
-            alt="Фотография природы России - Алтай">
-          <div class="card__description">
-            <h2 class="card__title">Алтай</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-
-        </li>
-        <li class="card">
-          <img class="card__img" src="./images/shtabnykh_photo-IUwkO6LZLJQ_Chuiskyi_Trakt.jpg"
-            alt="Фотография природы России - Чуйский Тракт">
-          <div class="card__description">
-            <h2 class="card__title">Чуйский траккккккккт</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" src="./images/oleg-gratilo-M4yZ235vwkE_Crime.jpg"
-            alt="Фотография природы России - Крым. Белая гора">
-          <div class="card__description">
-            <h2 class="card__title">Крым</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="Фотография природы России - Эльбрус">
-          <div class="card__description">
-            <h2 class="card__title">Эльбрус</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-        </li>
       </ul>
     </section>
+
+
   </main>
 
   <footer class="footer">
     <p class="footer__copyrigth">&copy; 2023 Elena Kainarova</p>
   </footer>
 
-  <section data-type="edit-popup" class="popup">
+  <!-- попап редактирования профиля -->
+  <section data-type="edit-popup" class="popup popup_profile">
     <div class="popup__container">
-      <button type="button" class="popup__close"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-form">
+      <button type="button" class="popup__close popup__close_profile"></button>
+      <h2 class="popup__title popup__title_profile">Редактировать профиль</h2>
+      <form class="popup__form popup__form_profile" name="profile-form">
         <label class="popup__input-wrap">
-          <input type="text" id="input-name" name="input-name" class="popup__input popup__input_type_name"
-             placeholder="Ваше имя" minlength="2" maxlength="50" required>
+          <input type="text"
+          id="input-name"
+          name="input-name"
+          class="popup__input popup__input_type_name"
+          placeholder="Ваше имя"
+          minlength="2"
+          maxlength="50"
+          required>
         </label>
 
         <label class="popup__input-wrap">
-          <input type="text" id="input-about" name="input-about" class="popup__input popup__input_type_about"
-            placeholder="Описание" minlength="2" maxlength="300" required>
+          <input type="text"
+          id="input-about"
+          name="input-about"
+          class="popup__input popup__input_type_about"
+          placeholder="Описание"
+          minlength="2"
+          maxlength="300"
+          required>
         </label>
 
         <button type="submit" class="popup__save-button">Сохранить</button>
@@ -112,7 +77,58 @@
     </div>
   </section>
 
+  <!-- попап добавления места -->
+  <section data-type="add-popup" class="popup popup_place">
+    <div class="popup__container">
+      <button type="button" class="popup__close popup__close_place"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_place" name="card-form">
+        <label class="popup__input-wrap">
+          <input type="text"
+          id="input-img-title"
+          name="input-img-title"
+          class="popup__input popup__input_type_name"
+          placeholder="Название места"
+          minlength="2"
+          maxlength="40"
+          required>
+        </label>
 
+        <label class="popup__input-wrap">
+          <input type="url"
+          id="input-url"
+          name="input-url"
+          class="popup__input popup__input_type_about"
+          placeholder="Ссылка на изображение"
+          required>
+        </label>
+
+        <button type="submit" class="popup__save-button">Создать</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- попап с изображением -->
+  <section data-type="img-popup" class="popup popup_container-img">
+    <div class="popup__container-img">
+      <button type="button" class="popup__close popup__close-img"></button>
+      <img src="#" alt="" class="popup__img">
+      <h2 class="popup__title-img">Заголовок</h2>
+    </div>
+  </section>
+
+
+  <!-- шаблон карточки -->
+  <template id="card-template">
+    <li class="card">
+      <img class="card__img" alt="Изображение загружено пользователем">
+      <div class="card__description">
+        <h2 class="card__title">Заголовок</h2>
+        <button type="button" class="card__delete"></button>
+        <button type="button" class="card__like"></button>
+      </div>
+    </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
