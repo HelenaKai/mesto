@@ -9,8 +9,8 @@ const profileJob = document.querySelector(".profile__subtitle");
 
 const nameInput = popupProfile.querySelector(".popup__input_type_name");
 const jobInput = popupProfile.querySelector(".popup__input_type_about");
-const formProfile = popupProfile.querySelector('.popup__form_profile');
-const closeButton = popupProfile.querySelector('.popup__close_profile');
+const profileForm = popupProfile.querySelector('.popup__form_profile');
+const profileCloseButton = popupProfile.querySelector('.popup__close_profile');
 
 
 function editPopupProfile() {
@@ -28,113 +28,121 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
 }
 
-closeButton.addEventListener('click', () => {
+profileCloseButton.addEventListener('click', () => {
   closePopup(popupProfile);
 });
 
 editButton.addEventListener('click', editPopupProfile);
-formProfile.addEventListener('submit', handleFormSubmit);
-
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 
 /* Попап места*/
 const popupPlace = document.querySelector('.popup_place');
-const addButton = document.querySelector('.profile__add-button');
-const closeButtonPlace = popupPlace.querySelector('.popup__close_place');
-const formPlace = popupPlace.querySelector('.popup__form_place');
+const placeAddButton = document.querySelector('.profile__add-button');
+const placeCloseButton = popupPlace.querySelector('.popup__close_place');
+const placeForm = popupPlace.querySelector('.popup__form_place');
 
-const placeNameInput = popupPlace.querySelector('#input-img-title');
-const placeImageInput = popupPlace.querySelector('#input-url');
+const namePlaceInput = popupPlace.querySelector('#input-img-title');
+const urlPlaceInput = popupPlace.querySelector('#input-url');
 const newElementTitle = document.querySelector('.card__title');
 const newElementImage = document.querySelector('.card__img');
 
-addButton.addEventListener('click', () => {
+placeAddButton.addEventListener('click', () => {
   openPopup(popupPlace)
 });
 
-closeButtonPlace.addEventListener('click', () => {
+placeCloseButton.addEventListener('click', () => {
   closePopup(popupPlace)
 });
 
 
 const handlePlaceFormSubmit = (evt) => {
   evt.preventDefault();
-  const fieldForm = {
-    name: placeNameInput.value,
-    link: placeImageInput.value
+  const card = {
+    name: namePlaceInput.value,
+    link: urlPlaceInput.value
   };
-  renderCard(cardsList, fieldForm);
-  placeNameInput.value = '';
-  placeImageInput.value = '';
+  renderCard(cardsList, card);
+  evt.target.reset();
   closePopup(popupPlace);
 }
 
-formPlace.addEventListener('submit', handlePlaceFormSubmit);
+placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
 
 /* Карточки «из коробки» */
 
 const cardsList = document.querySelector('.cards__list');
-const cardForm = document.querySelector('.popup__form_place');
 const cardTemplate = document.getElementById('card-template');
 
-const popupContainerImg = document.querySelector('.popup_container-img');
-const popupImage = popupContainerImg.querySelector('.popup__img');
-const popupTitleImg = popupContainerImg.querySelector('.popup__title-img');
+const imgPopup = document.querySelector('.popup_modal');
+const imgPopupImage = imgPopup.querySelector('.popup__img');
+const imgPopupTitle = imgPopup.querySelector('.popup__title-img');
 
-const getElement = (fieldForm) => {
+
+const getElement = (item) => {
   const newElement = cardTemplate.content.cloneNode(true);
 
   const newElementTitle = newElement.querySelector('.card__title');
   const newElementImage = newElement.querySelector('.card__img');
-  newElementTitle.textContent = fieldForm.name;
-  newElementImage.src = fieldForm.link;
-  newElementImage.alt = fieldForm.name;
+  newElementTitle.textContent = item.name;
+  newElementImage.src = item.link;
+  newElementImage.alt = item.name;
 
   const likeButton = newElement.querySelector('.card__like');
   const deleteButton = newElement.querySelector('.card__delete');
-  const openContainerImgButton = newElement.querySelector('.card__img');
 
-  deleteButton.addEventListener('click', cardDelete);
-  likeButton.addEventListener('click', likeToggle);
-  openContainerImgButton.addEventListener('click', openContainerImg);
+  deleteButton.addEventListener('click', deleteCard);
+  likeButton.addEventListener('click', toggleLike);
+  newElementImage.addEventListener('click', () => openPopupZoomImage(item));
 
   return newElement;
 };
 
-const renderCard = (wrap, fieldForm) => {
-  const cardElement = getElement(fieldForm);
+
+const renderCard = (wrap, item) => {
+  const cardElement = getElement(item);
   wrap.prepend(cardElement);
 };
 
 
-const likeToggle = (evt) => {
+const toggleLike = (evt) => {
   evt.target.classList.toggle('card__like_active');
 };
 
-const cardDelete = (evt) => {
+const deleteCard = (evt) => {
   evt.target.closest('.card').remove();
 };
 
 
-const openContainerImg = (evt) => {
-  const Card = evt.target.closest('.card');
-  popupTitleImg.textContent = Card.querySelector('.card__title').textContent;
-  popupImage.src = Card.querySelector('.card__img').src;
-  popupImage.alt = Card.querySelector('.card__title').textContent;
+const openPopupZoomImage = (item) => {
+  imgPopupImage.src  = item.link;
+  imgPopupImage.alt = item.name;
 
-  openPopup(popupContainerImg);
+  imgPopupTitle.textContent = item.name;
+  openPopup(imgPopup);
 };
 
-popupContainerImg.querySelector('.popup__close-img').addEventListener('click', () => {
-  closePopup(popupContainerImg)
+
+
+/*   const openImgPopup = (evt) => {
+  const card = evt.target.closest('.card');
+  imgPopupTitle.textContent = card.querySelector('.card__title').textContent;
+  imgPopupImage.src = card.querySelector('.card__img').src;
+  imgPopupImage.alt = card.querySelector('.card__title').textContent;
+
+  openPopup(imgPopup);
+}; */
+
+imgPopup.querySelector('.popup__close-img').addEventListener('click', () => {
+  closePopup(imgPopup);
 });
 
 initialCards.forEach((card) => {
