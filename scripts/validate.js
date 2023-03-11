@@ -10,18 +10,17 @@ const object = {
 //Добавляет обработчики сразу всем полям формы
 const setEventListeners = (object, formElement) => {
 
-  const inputList = Array.from(
-    formElement.querySelectorAll(object.inputSelector)
-  );
+  const inputList = Array.from(formElement.querySelectorAll(object.inputSelector));
   // Находим в текущей форме кнопку отправки
   const buttonElement = formElement.querySelector(object.submitSelector);
 
   toggleButtonState(object, inputList, buttonElement);
 
-    inputList.forEach((inputElement) => {
+  inputList.forEach((inputElement) => {
 
     inputElement.addEventListener('input', () => {
-       isValid(object, formElement, inputElement);
+
+      isValid(object, formElement, inputElement);
 
       toggleButtonState(object, inputList, buttonElement);
     });
@@ -35,6 +34,7 @@ const showInputError = (object, formElement, inputElement, errorMessage) => {
 
   // находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
   inputElement.classList.add(object.inputErrorClass);
 
   console.log('errorElement');
@@ -53,7 +53,7 @@ const hideInputError = (object, formElement, inputElement) => {
 
 // Ищем невалидные поля. Функция принимает массив полей формы и вернет true, если хотя бы одно поле не валидно, и false, если все валидны.
 const hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
+  return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 };
@@ -81,7 +81,10 @@ const toggleButtonState = (object, inputList, buttonElement) => {
 // Функция проверяет валидность поля
 const isValid = (object, formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-// Если поле не проходит валидацию, покажем ошибку
+    // Если поле не проходит валидацию, покажем ошибку
+
+    console.log('inputElement');
+
     showInputError(object, formElement, inputElement, inputElement.validationMessage);
   } else {
     // Если проходит, скроем
@@ -91,7 +94,7 @@ const isValid = (object, formElement, inputElement) => {
 
 // Переберем все формы на странице и добавим всем формам обработчик
 const enableValidation = (object) => {
-   const formList = Array.from(document.querySelectorAll(object.formSelector));
+  const formList = Array.from(document.querySelectorAll(object.formSelector));
 
   formList.forEach((formElement) => {
     // Для каждой формы вызываем функцию setEventListeners, передав ей элемент формы
