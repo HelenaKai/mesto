@@ -4,7 +4,7 @@ const object = {
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_inactive',
   errorClass: 'popup__input-error',
-   inputErrorClass: 'popup__input_type_error',
+  inputErrorClass: 'popup__input_type_error',
 }
 
 function enableValidation(object) {
