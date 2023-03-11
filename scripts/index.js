@@ -1,8 +1,6 @@
 /* console.log('hello'); */
 
 const popupsAll = document.querySelectorAll('.popup');
-/* const sectionProfile = document.querySelector('.profile'); */
-
 
 // Функция открытия Pupup`s
 const openPopup = (popupName) => {
@@ -74,8 +72,8 @@ const placeAddButton = document.querySelector('.profile__add-button');
 const placeCloseButton = popupPlace.querySelector('.popup__close_place');
 const placeForm = popupPlace.querySelector('.popup__form_place');
 
-const namePlaceInput = popupPlace.querySelector('#input-img-title');
-const urlPlaceInput = popupPlace.querySelector('#input-url');
+const namePlaceInput = popupPlace.querySelector('.popup__input_img-title');
+const urlPlaceInput = popupPlace.querySelector('.popup__input-url');
 const newElementTitle = document.querySelector('.card__title');
 const newElementImage = document.querySelector('.card__img');
 
@@ -103,12 +101,14 @@ const handlePlaceFormSubmit = (evt) => {
 
   // сброс данных формы
   evt.target.reset();
-  evt.submitter.classList.add('popup__save-button_inactive');
-  evt.submitter.disabled = true;
+/*   evt.submitter.classList.add('popup__save-button_inactive');
+  evt.submitter.disabled = true; */
 
 }
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
+
+console.log('placeForm');
 
 
 /* Карточки «из коробки» */
