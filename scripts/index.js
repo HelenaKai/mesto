@@ -11,7 +11,7 @@ const openPopup = (popupName) => {
 // Функция закрытия Pupup`s при клике на "крестик"
 const closePopup = (popupName) => {
   popupName.classList.remove('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 // Функция закрытия Pupup`s при клике ESC
@@ -99,16 +99,16 @@ const handlePlaceFormSubmit = (evt) => {
   renderCard(cardsList, card);
   closePopup(popupPlace);
 
+
+
   // сброс данных формы
   evt.target.reset();
-/*   evt.submitter.classList.add('popup__save-button_inactive');
-  evt.submitter.disabled = true; */
+  evt.submitter.classList.add('popup__save-button_inactive');
+  evt.submitter.disabled = true;
 
 }
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-
-console.log('placeForm');
 
 
 /* Карточки «из коробки» */
