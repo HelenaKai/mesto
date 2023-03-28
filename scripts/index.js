@@ -1,5 +1,14 @@
 /* console.log('hello'); */
 
+// ----------Импорт
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+
+// ---------
+// находим все "крестики" по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__close');
+
 const popupsAll = document.querySelectorAll('.popup');
 
 // Функция открытия Pupup`s
@@ -32,7 +41,8 @@ popupsAll.forEach((overlayPopup) => {
 });
 
 
-/* Попап профиля */
+// ---------Попап профиля
+
 const popupProfile = document.querySelector('.popup_profile');
 const editButton = document.querySelector('.profile__edit-button')
 
@@ -51,6 +61,7 @@ function editPopupProfile() {
   jobInput.value = profileJob.textContent;
 }
 
+//Обработчик «отправки» формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -58,15 +69,22 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupProfile);
 }
 
-profileCloseButton.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
+profileCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 
-editButton.addEventListener('click', editPopupProfile);
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
+editButton.addEventListener('click', editPopupProfile);
 
-/* Попап места*/
+// обработчики крестиков
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+
+//---------Попап места
+
 const popupPlace = document.querySelector('.popup_place');
 const placeAddButton = document.querySelector('.profile__add-button');
 const placeCloseButton = popupPlace.querySelector('.popup__close_place');
@@ -74,104 +92,84 @@ const placeForm = popupPlace.querySelector('.popup__form_place');
 
 const namePlaceInput = popupPlace.querySelector('.popup__input_img-title');
 const urlPlaceInput = popupPlace.querySelector('.popup__input-url');
-const newElementTitle = document.querySelector('.card__title');
-const newElementImage = document.querySelector('.card__img');
 
 
+function handlePlaceFormSubmit(evt) {
+  evt.preventDefault();  // сбрасываем стандартное поведение формы
+  const card = createCard({ name: namePlaceInput.value, link: urlPlaceInput.value })
 
-
-placeAddButton.addEventListener('click', () => {
-  openPopup(popupPlace)
-});
-
-placeCloseButton.addEventListener('click', () => {
-  closePopup(popupPlace)
-});
-
-
-
-const handlePlaceFormSubmit = (evt) => {
-  evt.preventDefault();
-  const card = {
-    name: namePlaceInput.value,
-    link: urlPlaceInput.value
-  };
-  renderCard(cardsList, card);
+  // Добавляем в DOM
+  renderCard(card);
   closePopup(popupPlace);
-
-
 
   // сброс данных формы
   evt.target.reset();
-  evt.submitter.classList.add('popup__save-button_inactive');
-  evt.submitter.disabled = true;
+  validPopupCardForm.resetValidation();
 
 }
 
+// слушаем события
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
+placeAddButton.addEventListener('click', () => { openPopup(popupPlace) });
+placeCloseButton.addEventListener('click', () => { closePopup(popupPlace) });
 
 
-/* Карточки «из коробки» */
+// -----генерация карточек
 
-const cardsList = document.querySelector('.cards__list');
-const cardTemplate = document.getElementById('card-template');
+function showInitialCards() {
+  // Перебор массива с данными
+  initialCards.forEach((dataCard) => {
+    const cardElement = createCard(dataCard);
+    // Добавляем в DOM
+    renderCard(cardElement)
+  });
+}
+showInitialCards();
 
-
-const getElement = (item) => {
-  const newElement = cardTemplate.content.cloneNode(true);
-
-  const newElementTitle = newElement.querySelector('.card__title');
-  const newElementImage = newElement.querySelector('.card__img');
-  newElementTitle.textContent = item.name;
-  newElementImage.src = item.link;
-  newElementImage.alt = item.name;
-
-  const likeButton = newElement.querySelector('.card__like');
-  const deleteButton = newElement.querySelector('.card__delete');
-
-  deleteButton.addEventListener('click', deleteCard);
-  likeButton.addEventListener('click', toggleLike);
-  newElementImage.addEventListener('click', () => openPopupZoomImage(item));
-
-  return newElement;
-};
+function createCard(data) {
+  const cards = new Card(data.name, data.link, '#card-template', openPopupZoomImage);
+  // Создаём карточку и возвращаем
+  return cards.generateCard();
+}
 
 // функция отрисовки карточки методом prepend()
-const renderCard = (wrap, item) => {
-  const cardElement = getElement(item);
-  wrap.prepend(cardElement);
-};
+function renderCard(node) {
+  const cardList = document.querySelector(".cards__list");
+  cardList.prepend(node);
+}
 
-const toggleLike = (evt) => {
-  evt.target.classList.toggle('card__like_active');
-};
-
-const deleteCard = (evt) => {
-  evt.target.closest('.card').remove();
-};
-
+//------функция для открытия окна c картинкой по клику на картинку
 
 const imgPopup = document.querySelector('.popup_modal');
+
 const imgPopupImage = imgPopup.querySelector('.popup__img');
 const imgPopupTitle = imgPopup.querySelector('.popup__title-img');
 
+imgPopup.querySelector('.popup__close').addEventListener('click', () => { closePopup(imgPopup) });
 
-const openPopupZoomImage = (item) => {
-  imgPopupImage.src = item.link;
-  imgPopupImage.alt = item.name;
-
-  imgPopupTitle.textContent = item.name;
+//popup открытия изображения
+function openPopupZoomImage(name, link) {
   openPopup(imgPopup);
+  imgPopupImage.src = link;
+  imgPopupImage.alt = name;
+  imgPopupTitle.textContent = name;
+}
+
+// ---- Валидация
+
+const object = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitSelector: '.popup__save-button',
+  disabledButtonClass: 'popup__save-button_inactive',
+  errorClass: 'popup__input-error',
+  inputErrorClass: 'popup__input_type_error',
 };
 
-
-imgPopup.querySelector('.popup__close-img').addEventListener('click', () => {
-  closePopup(imgPopup);
-});
-
-initialCards.forEach((card) => {
-  renderCard(cardsList, card);
-});
+const validPopupProfileForm = new FormValidator(object, popupProfile);
+validPopupProfileForm.enableValidation();
+validPopupProfileForm.submitFalse();
 
 
-enableValidation(object);
+const validPopupPlaceForm = new FormValidator(object, popupPlace);
+validPopupPlaceForm.enableValidation();

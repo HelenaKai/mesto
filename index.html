@@ -10,7 +10,6 @@
   <meta name="autor" content="Elena Kainarova">
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
-  <script src="./scripts/cards.js"></script>
 </head>
 
 <body class="page">
@@ -83,9 +82,9 @@
         </label>
 
 
-       <label class="popup__input-wrap">
-          <input type="url" id="input-url" name="input-url" class="popup__input popup__input_type_about popup__input-url"
-            placeholder="Ссылка на изображение" required>
+        <label class="popup__input-wrap">
+          <input type="url" id="input-url" name="input-url"
+            class="popup__input popup__input_type_about popup__input-url" placeholder="Ссылка на изображение" required>
           <span class="popup__input-error input-url-error"></span>
         </label>
 
@@ -117,8 +116,8 @@
     </li>
   </template>
 
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script defer src="./scripts/data.js"></script>
+  <script defer type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>
