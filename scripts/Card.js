@@ -44,10 +44,6 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleImageClick() {
-    this._openPopupZoomImagen(this._name, this._link);
-
-  }
 
 }
 

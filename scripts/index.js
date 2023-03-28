@@ -52,7 +52,6 @@ const profileJob = document.querySelector('.profile__subtitle');
 const nameInput = popupProfile.querySelector('.popup__input_type_name');
 const jobInput = popupProfile.querySelector('.popup__input_type_about');
 const profileForm = popupProfile.querySelector('.popup__form_profile');
-const profileCloseButton = popupProfile.querySelector('.popup__close_profile');
 
 
 function editPopupProfile() {
@@ -68,8 +67,6 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
 }
-
-profileCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
@@ -87,7 +84,6 @@ closeButtons.forEach((button) => {
 
 const popupPlace = document.querySelector('.popup_place');
 const placeAddButton = document.querySelector('.profile__add-button');
-const placeCloseButton = popupPlace.querySelector('.popup__close_place');
 const placeForm = popupPlace.querySelector('.popup__form_place');
 
 const namePlaceInput = popupPlace.querySelector('.popup__input_img-title');
@@ -110,8 +106,6 @@ function handlePlaceFormSubmit(evt) {
 // слушаем события
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 placeAddButton.addEventListener('click', () => { openPopup(popupPlace) });
-placeCloseButton.addEventListener('click', () => { closePopup(popupPlace) });
-
 
 // -----генерация карточек
 
@@ -144,7 +138,6 @@ const imgPopup = document.querySelector('.popup_modal');
 const imgPopupImage = imgPopup.querySelector('.popup__img');
 const imgPopupTitle = imgPopup.querySelector('.popup__title-img');
 
-imgPopup.querySelector('.popup__close').addEventListener('click', () => { closePopup(imgPopup) });
 
 //popup открытия изображения
 function openPopupZoomImage(name, link) {
