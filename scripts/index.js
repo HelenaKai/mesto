@@ -104,8 +104,7 @@ function handlePlaceFormSubmit(evt) {
 
   // сброс данных формы
   evt.target.reset();
-  validPopupCardForm.resetValidation();
-
+  validPopupPlaceForm.resetValidation();
 }
 
 // слушаем события
