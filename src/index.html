@@ -9,17 +9,16 @@
   <meta name="keywords" content="HTML, CSS, JavaScript">
   <meta name="autor" content="Elena Kainarova">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
-</head>
+ </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/mesto-logo.svg" alt="Логотип интерактивного сервиса Mesto">
+    <img class="header__logo" src="<%=require('./images/mesto-logo.svg')%>" alt="Логотип интерактивного сервиса Mesto">
   </header>
 
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Жак-Ив-Кусто на фоне море">
+      <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Жак-Ив-Кусто на фоне море">
       <div class="profile__info">
         <div class="profile__info-wrap">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -51,13 +50,13 @@
 
       <form class="popup__form popup__form_profile" name="profile-form" novalidate>
         <label class="popup__input-wrap">
-          <input type="text" id="input-name" name="input-name" class="popup__input popup__input_type_name"
+          <input type="text" id="input-name" name="input_name" class="popup__input popup__input_type_name"
             placeholder="Ваше имя" minlength="2" maxlength="40" required>
           <span class="popup__input-error input-name-error"></span>
         </label>
 
         <label class="popup__input-wrap">
-          <input type="text" id="input-about" name="input-about" class="popup__input popup__input_type_about"
+          <input type="text" id="input-about" name="input_about" class="popup__input popup__input_type_about"
             placeholder="Описание" minlength="2" maxlength="200" required>
           <span class="popup__input-error input-about-error"></span>
         </label>
@@ -72,10 +71,10 @@
     <div class="popup__container">
       <button type="button" class="popup__close popup__close_place"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_place" name="card-form" novalidate>
+      <form class="popup__form popup__form_place" name="place-form" novalidate>
 
         <label class="popup__input-wrap">
-          <input type="text" id="input-img-title" name="input-img-title"
+          <input type="text" id="input-img-title" name="input_img_title"
             class="popup__input popup__input_type_name popup__input_img-title" placeholder="Название места"
             minlength="2" maxlength="30" required>
           <span class="popup__input-error input-img-title-error"></span>
@@ -83,7 +82,7 @@
 
 
         <label class="popup__input-wrap">
-          <input type="url" id="input-url" name="input-url"
+          <input type="url" id="input-url" name="input_url"
             class="popup__input popup__input_type_about popup__input-url" placeholder="Ссылка на изображение" required>
           <span class="popup__input-error input-url-error"></span>
         </label>
@@ -116,8 +115,5 @@
     </li>
   </template>
 
-  <script defer src="./scripts/data.js"></script>
-  <script defer type="module" src="./scripts/index.js"></script>
 </body>
-
 </html>

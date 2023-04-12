@@ -46,12 +46,12 @@ export default class FormValidator {
   }
 
   // Делаем кнопку отправки неактивной
-  disabledSubmitBtn() {
+  disabledSubmitButton() {
     this._buttonElement.classList.add(this._disabledButtonClass);
     this._buttonElement.disabled = true;
   };
   // Активной
-  activeSubmitBtn() {
+  activeSubmitButton() {
     this._buttonElement.classList.remove(this._disabledButtonClass);
     this._buttonElement.disabled = false;
   };
@@ -60,14 +60,14 @@ export default class FormValidator {
   // Функция, которая проверяет валидность полей и отключает или включает кнопку отправки.
   _toggleButtonState() {
     if (this._hasInvalidInput()) { //если хотя бы один невалидный инпут, кнопка неактивна
-      this.disabledSubmitBtn()
+      this.disabledSubmitButton()
     } else {
-      this.activeSubmitBtn()
+      this.activeSubmitButton()
     }
   };
 
 
-// Ищем невалидные поля. Функция принимает массив полей формы и вернет true, если хотя бы одно поле не валидно, и false, если все валидны.
+  // Ищем невалидные поля. Функция принимает массив полей формы и вернет true, если хотя бы одно поле не валидно, и false, если все валидны.
   _hasInvalidInput() {
     // проходим по этому массиву методом some
     return this._inputList.some((inputElement) => {
@@ -75,7 +75,7 @@ export default class FormValidator {
     })
   };
 
-    _setEventListeners() {
+  _setEventListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);

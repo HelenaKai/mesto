@@ -1,34 +1,28 @@
-
 export default class Card {
-  constructor(name, link, templateSelector, handleImageClick) {
+  constructor(data, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
-    this._name = name;
-    this._link = link;
-    this._handleImageClick = handleImageClick;
+    this._name = data.name;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const newElement = document.querySelector(this._templateSelector).content.querySelector('.card').cloneNode(true);
-    return newElement;
+    return document.querySelector(this._templateSelector).content.querySelector('.card').cloneNode(true);
   }
 
   generateCard() {
-
     this._element = this._getTemplate();
-
     this._newElementImage = this._element.querySelector('.card__img');
     this._newElementImage.src = this._link;
     this._newElementImage.alt = this._name;
     this._element.querySelector('.card__title').textContent = this._name;
-
     this._setEventListeners();
-
-    return this._element;
+    return this._element;       // Вернём элемент наружу
   }
 
   _setEventListeners() {
 
-    this._newElementImage.addEventListener('click', () => this._handleImageClick(this._name, this._link));
+    this._newElementImage.addEventListener('click', () => { this._handleCardClick(this._name, this._link) });
 
     this._element.querySelector('.card__delete').addEventListener('click', () => this._deleteCard());
 
@@ -37,14 +31,12 @@ export default class Card {
   }
 
   _toggleLike = (evt) => {
-    evt.target.classList.toggle('card__like_active')
+    evt.target.classList.toggle('card__like_active');
   }
 
   _deleteCard() {
     this._element.remove();
   }
-
-
 }
 
 
