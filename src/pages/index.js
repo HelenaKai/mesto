@@ -36,6 +36,7 @@ editButton.addEventListener('click', () => {
   const userInfoGet = userInfo.getUserInfo();
   nameInput.value = userInfoGet.name;
   jobInput.value = userInfoGet.job;
+  validPopupPlaceForm.resetValidation();
 });
 
 const editPopupProfile = new PopupWithForm(popupProfile, (data) => {
@@ -53,37 +54,39 @@ const placeAddButton = sectionProfile.querySelector('.profile__add-button');
 const popupPlace = document.querySelector('.popup_place');
 
 
-function createCard(data) {
-  const cards = new Card(data, '#card-template', handleCardClick),
-    cardElement = cards.generateCard();
-  return cardsList.addItem(cardElement);
+function createCard(card) {
+  const newCard = new Card(card, '#card-template', handleCardClick);
+  return newCard.generateCard();
 }
+
 
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupPlace, (data) => {
-  createCard({ name: data.input_img_title, link: data.input_url });
+  cards.addItem(createCard({ name: data.input_img_title, link: data.input_url }));
   handleEditCard.close();
   validPopupPlaceForm.resetValidation();
 });
 handleEditCard.setEventListeners();
 
 // слушаем события
-placeAddButton.addEventListener("click", () => {
-  handleEditCard.open();
-});
+placeAddButton.addEventListener("click", () => { handleEditCard.open(); });
 
 // -----генерация карточек
-const cardList = document.querySelector('.cards__list');
 
-// Section
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (data) => {
-    createCard(data)
-  }
-}, cardList);
+//const placeElements = document.querySelector('.cards__list');
 
-cardsList.renderItems();
+const cards = new Section({
+    items: initialCards,
+    renderer: (data) => {
+      const cardItem = createCard(data);
+      cards.addItem(cardItem);
+    },
+  },
+  '.cards__list'
+);
+
+cards.renderItems(initialCards);
+
 
 
 //------функция для открытия окна c картинкой по клику на картинку
@@ -102,7 +105,6 @@ openPopupZoomImage.setEventListeners();
 
 const validPopupProfileForm = new FormValidator(object, popupProfile);
 validPopupProfileForm.enableValidation();
-/* validPopupProfileForm.submitFalse(); */
 
 const validPopupPlaceForm = new FormValidator(object, popupPlace);
 validPopupPlaceForm.enableValidation();

@@ -50,7 +50,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()
-  ]
+  ],
+  devtool:'source-map'
 
 }
 

@@ -13,18 +13,19 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._popupForm = this._selector.querySelector('.popup__form');
-    this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
+    this._popupForm = this._popupElement.querySelector('.popup__form');
+    this._inputList = this._popupForm.querySelectorAll('.popup__input');
+    //this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
     this._submitButtonElement = this._popupForm.querySelector('.popup__save-button');
   }
 
   // _getInputValues - приватный метод: собрать данные всех полей формы
   _getInputValues() {
-    const inputValues = {};
+    this._inputValues = {};
     this._inputList.forEach((input) => {
-      inputValues[input.name] = input.value;
+      this._inputValues[input.name] = input.value;
     });
-    return inputValues;
+    return this._inputValues;
   }
 
   // перезаписать родительский метод setEventListeners
@@ -48,8 +49,6 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._popupForm.reset();
   }
-
-
 }
 
 
