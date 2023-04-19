@@ -19,7 +19,7 @@ export default class PopupWithImage extends Popup {
     this._imgPopupImage.alt = name;
     this._imgPopupTitle.textContent = name;
     super.open();
-  }
+  };
 }
 
 

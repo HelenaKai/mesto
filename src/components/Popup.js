@@ -15,9 +15,12 @@
 
 
 export default class Popup {
-  constructor(popupSelector) {
-    this._popupElement = popupSelector;
+  constructor(popupElement) {
+    this._popupElement = document.querySelector(popupElement);
+    //this._popupElement = popupElement;
     this._handleEscClose = this._handleEscClose.bind(this);
+
+
   }
 
   open() {
@@ -43,6 +46,9 @@ export default class Popup {
       };
     });
   }
+
+
+
 }
 
 

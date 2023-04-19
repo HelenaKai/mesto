@@ -15,8 +15,6 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._popupForm = this._popupElement.querySelector('.popup__form');
     this._inputList = this._popupForm.querySelectorAll('.popup__input');
-    //this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
-    this._submitButtonElement = this._popupForm.querySelector('.popup__save-button');
   }
 
   // _getInputValues - приватный метод: собрать данные всех полей формы
@@ -34,15 +32,17 @@ export default class PopupWithForm extends Popup {
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
+      this.close();
     });
   }
 
-  setInputValues(data) {
-    this._inputList.forEach((input) => {
-      // вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
-      input.value = data[input.name];
-    });
-  }
+  /*   setInputValues(data) {
+      this._inputList.forEach((input) => {
+        // вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
+        input.value = data[input.name];
+      });
+    }
+   */
 
   //  перезаписать родительский метод close
   close() {
