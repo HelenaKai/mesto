@@ -24,7 +24,9 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+export const profileNameSelector = '.profile__title';                      // КУСТО
+export const profilePositionSelector = '.profile__subtitle';               //исследователь океана
+export const profileAvatarSelector = '.profile__avatar';                   //Аватара изображение
 
 export const object = {
   formSelector: '.popup__form',

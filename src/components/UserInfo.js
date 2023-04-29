@@ -6,22 +6,26 @@
 */
 
 export default class UserInfo {
-  constructor({ userName, userJob }) {
-    this._name = userName;
-    this._job = userJob;
+  constructor(nameSelector, jobSelector, avatarSelector) {
+    this._userName = document.querySelector(nameSelector);
+    this._job = document.querySelector(jobSelector);
+    this._avatar = document.querySelector(avatarSelector);
   }
 
-  // getUserInfo - возвращает объект с данными пользователя
   getUserInfo() {
     return {
-      name: this._name.textContent,
-      job: this._job.textContent
-    }
+      name: this._userName.textContent,
+      job: this._job.textContent,
+    };
   }
 
-  // setUserInfo - принимает первоначальные данные пользователя, добавляет их на страницу
-  setUserInfo(data) {
-    this._name.textContent = data.input_name;
-    this._job.textContent = data.input_about;
+  setUserInfo({ name, about, avatar }) {
+    this._userName.textContent = name;
+    this._job.textContent = about;
+    this._avatar.style.backgroundImage = `url(${avatar})`;
   }
+
 }
+
+
+

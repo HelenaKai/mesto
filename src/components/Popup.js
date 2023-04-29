@@ -1,26 +1,13 @@
-/** Создайте класс Popup, который отвечает за открытие и закрытие попапа.
- * Этот класс:
- * Принимает в конструктор единственный параметр — селектор попапа.
- * Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
- * Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
- * Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа. Модальное окно также
- * закрывается при клике на затемнённую область вокруг формы.
- */
-
-/** Данный класс является слоем и не имеет своего представления.
- * Он отвечает исключительно за открытие и закрытие попапа.
- * Весь функционал этого класса передается его наследникам -- PopupWithImage и PopupWithForm.
- */
-
-
-
 export default class Popup {
-  constructor(popupElement) {
-    this._popupElement = document.querySelector(popupElement);
-    //this._popupElement = popupElement;
+  constructor(popupSelector) {
+    this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
+  }
 
-
+  _handleEscClose(evt) {
+    if (evt.key === 'Escape') {
+      this.close();
+    }
   }
 
   open() {
@@ -33,15 +20,13 @@ export default class Popup {
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
-    if (evt.key === 'Escape') {
-      this.close();
-    }
-  }
+
 
   setEventListeners() {
     this._popupElement.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+      if (
+        evt.target.classList.contains('popup_opened') ||
+        evt.target.classList.contains('popup__close')) {
         this.close();
       };
     });
@@ -50,6 +35,4 @@ export default class Popup {
 
 
 }
-
-
 
