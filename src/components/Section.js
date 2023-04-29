@@ -1,9 +1,9 @@
 //класс Section - отвечает за отрисовку элементов на странице (отрисовывает разметку, которую возвращает Card)
 
 export default class Section {
-  constructor( renderer , selector) {
+  constructor( renderer , containerSelector) {
     this._renderer = renderer;
-    this._container = document.querySelector(selector);
+    this._container = document.querySelector(containerSelector);
   }
 
   renderItems(items) {
