@@ -64,14 +64,13 @@ const userInfo = new UserInfo(
 
 //--------------------- popupAvatar
 const popupUpdateAvatar = new PopupWithForm('.popup_avatar', (formData) => {
-  popupUpdateAvatar.renderLoading(true);
-  api
-    .changeUserAvatar(formData)
+  return  api.changeUserAvatar(formData)
     .then((data) => {
       userInfo.setUserInfo(data);
+      popupUpdateAvatar.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => popupUpdateAvatar.renderLoading(false));
+    .finally(() => popupUpdateAvatar.close());
 });
 
 popupUpdateAvatar.setEventListeners();
@@ -85,14 +84,13 @@ avatarEditButton.addEventListener('click', () => {
 //---------Popup редактирования профиля
 
 const popupEditProfile = new PopupWithForm('.popup_profile', (formData) => {
-  popupEditProfile.renderLoading(true);
-  api
-    .changeUserInfo(formData)
+  return api.changeUserInfo(formData)
     .then((data) => {
       userInfo.setUserInfo(data);
+      popupEditProfile.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => popupEditProfile.renderLoading(false));
+    .finally(() => popupEditProfile.close());
 });
 
 popupEditProfile.setEventListeners();
@@ -107,14 +105,13 @@ editButton.addEventListener('click', () => {
 //---------Popup добавления карточки (места)
 
 const handleEditCard = new PopupWithForm('.popup_place', (formData) => {
-  handleEditCard.renderLoading(true);
-  api
-    .addCard(formData)
+  return api.addCard(formData)
     .then((data) => {
       cardsList.addItem(data);
+      handleEditCard.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => handleEditCard.renderLoading(false));
+    .finally(() => handleEditCard.close());
 });
 
 handleEditCard.setEventListeners();
