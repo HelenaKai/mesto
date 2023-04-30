@@ -18,7 +18,7 @@
 
   <main>
     <section class="profile">
-     <div class="profile__avatar" aria-label="Открыть попап редактирования аватара" ></div>
+      <div class="profile__avatar" aria-label="Открыть попап редактирования аватара"></div>
 
 
 
@@ -48,20 +48,15 @@
 
   <!-- попап Обновить АВАТАР -->
 
-  <section class="popup popup__edit-avatar" id="popup-edit-avatar">
+  <section class="popup popup_avatar" id="popup-edit-avatar">
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="popup__form" action="#" method="post" novalidate>
-        <label for="avatar" class="popup__input-wrap">
-          <input
-            type="url"
-            name="avatar"
-            id="input-avatar"
-            class="popup__input popup__input_avatar"
-            placeholder="Ссылка на картинку"
-            required>
-          <span class="popup__input-error input-avatar-error" ></span>
+        <label class="popup__input-wrap">
+          <input type="url" name="avatar" id="input-avatar" class="popup__input popup__input_avatar"
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error input-avatar-error"></span>
         </label>
         <button type="submit" class="popup__save-button popup__save-button_inactive" disabled>Сохранить</button>
       </form>
@@ -75,27 +70,15 @@
       <h2 class="popup__title popup__title_profile">Редактировать профиль</h2>
 
       <form class="popup__form popup__form_profile" name="profile-form" method="post" novalidate>
-        <label class="popup__input-wrap" for="name">
-          <input
-            type="text"
-            name="name"
-            id="input-name"
-            class="popup__input popup__input_type_name"
-            placeholder="Ваше имя"
-            minlength="2" maxlength="40"
-            required>
+        <label class="popup__input-wrap">
+          <input type="text" name="name" id="input-name" class="popup__input popup__input_type_name"
+            placeholder="Ваше имя" minlength="2" maxlength="40" required>
           <span class="popup__input-error input-name-error"></span>
         </label>
 
         <label class="popup__input-wrap">
-          <input
-            type="text"
-            id="input-about"
-            name="job"
-            class="popup__input popup__input_type_about"
-            placeholder="Описание"
-            minlength="2" maxlength="200"
-            required>
+          <input type="text" id="input-about" name="job" class="popup__input popup__input_type_about"
+            placeholder="Описание" minlength="2" maxlength="200" required>
           <span class="popup__input-error input-about-error"></span>
         </label>
 
@@ -112,26 +95,16 @@
       <form class="popup__form popup__form_place" name="place-form" method="post" novalidate>
 
         <label class="popup__input-wrap">
-          <input
-            type="text"
-            id="input-img-title"
-            name="title"
-            class="popup__input popup__input_type_name popup__input_img-title"
-            placeholder="Название места"
-            minlength="2" maxlength="30"
-            required>
+          <input type="text" id="input-img-title" name="title"
+            class="popup__input popup__input_type_name popup__input_img-title" placeholder="Название места"
+            minlength="2" maxlength="30" required>
           <span class="popup__input-error input-img-title-error"></span>
         </label>
 
 
         <label class="popup__input-wrap">
-          <input
-            type="url"
-            id="input-url"
-            name="link"
-            class="popup__input popup__input_type_about popup__input-url"
-            placeholder="Ссылка на изображение"
-            required>
+          <input type="url" id="input-url" name="link" class="popup__input popup__input_type_about popup__input-url"
+            placeholder="Ссылка на изображение" required>
           <span class="popup__input-error input-url-error"></span>
         </label>
 

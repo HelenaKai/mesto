@@ -27,7 +27,7 @@ const avatarEditButton = sectionProfile.querySelector('.profile__avatar');
 
 const popupProfile = document.querySelector('.popup_profile');
 const popupPlace = document.querySelector('.popup_place');
-const popupAvatar = document.querySelector('.popup__edit-avatar');
+const popupAvatar = document.querySelector('.popup_avatar');
 
 
 
@@ -63,7 +63,7 @@ const userInfo = new UserInfo(
 
 
 //--------------------- popupAvatar
-const popupUpdateAvatar = new PopupWithForm('.popup__edit-avatar', (formData) => {
+const popupUpdateAvatar = new PopupWithForm('.popup_avatar', (formData) => {
   popupUpdateAvatar.renderLoading(true);
   api
     .changeUserAvatar(formData)
