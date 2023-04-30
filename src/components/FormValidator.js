@@ -17,7 +17,7 @@ export default class FormValidator {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
 
-    /*  console.log('errorElement'); */
+    /*  console.log('errorElement');  `.popup__input-error_${inputElement.id}`*/
 
     errorElement.textContent = errorMessage; // Показываем сообщение об ошибке
     errorElement.classList.add(this._errorClass); // Замена содержимого span с ошибкой на переданный параметр

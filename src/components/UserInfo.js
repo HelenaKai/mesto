@@ -23,6 +23,7 @@ export default class UserInfo {
     this._userName.textContent = name;
     this._job.textContent = about;
     this._avatar.style.backgroundImage = `url(${avatar})`;
+   // this._avatar.src = avatar;
   }
 
 }
